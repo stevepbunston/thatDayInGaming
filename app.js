@@ -20,9 +20,14 @@ const methodOverride = require('method-override');
 const userRoutes = require('./routes/users');
 const articleRoutes = require('./routes/articles');
 const reviewRoutes = require('./routes/reviews');
+const MongoStore = require('connect-mongo')(session);
+const dbUrl = 'mongodb://localhost:27017/gameblog'
+//'mongodb://localhost:27017/gameblog'
+//process.env.DB_URL
 
 //the 3 below are deprecated.
-mongoose.connect('mongodb://localhost:27017/gameblog', {
+
+mongoose.connect(dbUrl, {
     /*     useNewUrlParser: true,
         useUnifiedTopology: true,
         useFindAndModify: false */
@@ -45,7 +50,18 @@ app.use(express.urlencoded({limit: '50mb', extended: true}));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname,'public')));
 
+const store = new MongoStore({
+    url: dbUrl,
+    secret: 'thisIsMySecret',
+    touchAfter: 24 * 60 * 60
+});
+
+store.on("error", function (e) {
+    console.log("SESSION STORE ERROR", e)
+});
+
 const sessionConfig = {
+    store,
     secret: 'thisIsMySecret',
     resave: false,
     saveUninitialized: true,
