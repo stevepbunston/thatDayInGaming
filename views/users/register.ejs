@@ -1,0 +1,64 @@
+<% layout('layouts/boilerplate')%>
+<div class="container d-flex justify-content-center align-items-center mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+            <div class="card shadow">
+                <img src="https://res.cloudinary.com/duil5vwuw/image/upload/v1722216847/gameImages/ryan-quintal--3KYZ9SpqWk-unsplash_1_rn6o5c.jpg"
+                    alt="" class="card-img-top" />
+                <div class="card-body">
+                    <h5 class="card-title">Register</h5>
+                    <form action="/register" method="POST" class="validated-form" novalidate>
+                        <div class="mb-3">
+                            <label class="form-label" for="username">Username</label>
+                            <input class="form-control" type="text" id="username" name="username" required autofocus>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="email">Email</label>
+                            <input class="form-control" type="email" id="email" name="email" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="password">Password</label>
+                            <input class="form-control" type="password" id="password" name="password" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Avatar</label>
+                            <div class="d-flex flex-wrap">
+                                <% const avatars = [
+                                    'https://res.cloudinary.com/duil5vwuw/image/upload/v1720188271/avatars/av7_uphxbo.jpg', 
+                                    'https://res.cloudinary.com/duil5vwuw/image/upload/v1720188270/avatars/av10_qyyxvy.jpg', 
+                                    'https://res.cloudinary.com/duil5vwuw/image/upload/v1720188270/avatars/av9_a2wsjt.jpg', 
+                                    'https://res.cloudinary.com/duil5vwuw/image/upload/v1720188269/avatars/av8_fm2eig.jpg', 
+                                    'https://res.cloudinary.com/duil5vwuw/image/upload/v1720188269/avatars/av5_auyjpv.jpg', 
+                                    'https://res.cloudinary.com/duil5vwuw/image/upload/v1720188269/avatars/av6_gb7t7y.jpg', 
+                                    'https://res.cloudinary.com/duil5vwuw/image/upload/v1720188268/avatars/av4_sem0xw.jpg', 
+                                    'https://res.cloudinary.com/duil5vwuw/image/upload/v1720188268/avatars/av2_rsa1lh.jpg', 
+                                    'https://res.cloudinary.com/duil5vwuw/image/upload/v1720188268/avatars/av3_z5jebn.jpg', 
+                                    'https://res.cloudinary.com/duil5vwuw/image/upload/v1720188268/avatars/av1_fmalgj.jpg'
+                                ]; %>
+                                <% avatars.forEach((avatar, index) => { %>
+                                    <div class="form-check mr-2 mb-2">
+                                        <input class="form-check-input" type="radio" name="avatar" id="avatar<%= index %>" value="<%= avatar %>" <%= index === 0 ? 'checked' : '' %>>
+                                        <label class="form-check-label" for="avatar<%= index %>">
+                                            <img class="small-img" src="<%= avatar %>" alt="Avatar">
+                                        </label>
+                                    </div>
+                                <% }); %>
+                            </div>
+                        </div>
+                        <button class="btn btn-success btn-block">Register</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

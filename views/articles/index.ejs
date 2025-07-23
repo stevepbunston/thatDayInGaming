@@ -1,0 +1,23 @@
+<% layout('layouts/boilerplate') %>
+<h1>Retro Game Articles</h1>
+<div>
+    <% if(currentUser && currentUser.role === 'admin'){ %>
+    <a class="btn btn-info mb-3" href="/articles/new">Add Article</a>
+    <% } %>
+</div>
+<% for (let article of articles) {%> 
+    <div class="card mb-3">
+        <div class="row">
+            <div class="col-md-4">
+                <img class="img-fluid" src="<%= article.images[0].url %>" alt="">
+            </div>
+            <div class="col-md-8">
+                <h5 class="card-title"><%= article.title %></h5>
+                <p class="card-text"><%= article.game %></p>
+                <p class="card-text"><%= article.release %></p>
+                <p class="card-text"><%= article.console %></p>
+                <a class="btn btn-primary" href="/articles/<%= article._id %>">View <%= article.game %></a>
+            </div>
+        </div>
+    </div>
+<%}%>

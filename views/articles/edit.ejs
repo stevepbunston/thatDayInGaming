@@ -1,0 +1,137 @@
+<% layout('layouts/boilerplate') %>
+<div class="row">
+    <h1 class="text-center">Edit Article</h1>
+    <div class="col-6 offset-3">
+        <form id="myForm" action="/articles/<%= article._id %>?_method=PUT" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+            <div>
+                <div class="mb-3">
+                    <label class="form-label" for="title">Title</label>
+                    <input class="form-control" type="text" name="article[title]" id="title" value="<%= article.title %>" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="game">Game</label>
+                    <input class="form-control" type="text" name="article[game]" id="game" value="<%= article.game %>" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="console">Console</label>
+                    <input class="form-control" type="text" name="article[console]" id="console" value="<%= article.console %>" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="release">Release</label>
+                    <input class="form-control" type="text" name="article[release]" id="release" value="<%= article.release %>" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="image">Image URL</label>
+                    <input class="form-control" type="file" name="image" multiple>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="blog">Blog</label>
+                    <textarea class="form-control" type="text" name="article[blog]" id="mytextarea"><%- article.blog %></textarea>
+                </div>
+
+                <!-- Movies Section -->
+                <h2>Movies</h2>
+                <% for(let i = 0; i < article.movies.length; i++) { %>
+                <div class="mb-3">
+                    <div class="mb-3">
+                        <label class="form-label" for="movieTitle<%= i %>">#<%= i + 1 %> Movie Title</label>
+                        <input class="form-control" type="text" name="article[movies][<%= i %>][title]" id="movieTitle<%= i %>" value="<%= article.movies[i].title %>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="movieImage<%= i %>">#<%= i + 1 %> Movie Image</label>
+                        <input class="form-control" type="text" name="article[movies][<%= i %>][url]" id="movieImage<%= i %>" value="<%= article.movies[i].url %>" required>
+                    </div>
+                </div>
+                    <% } %>
+
+                <!-- Music Section -->
+                <h2>Music</h2>
+                <% for(let i = 0; i < article.songs.length; i++) { %>
+                <div class="mb-3">
+                    <div class="mb-3">
+                        <label class="form-label" for="songTitle<%= i %>">#<%= i + 1 %> Song Title</label>
+                        <input class="form-control" type="text" name="article[songs][<%= i %>][title]" id="songTitle<%= i %>" value="<%= article.songs[i].title %>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="songImage<%= i %>">#<%= i + 1 %> Song Image</label>
+                        <input class="form-control" type="text" name="article[songs][<%= i %>][url]" id="songImage<%= i %>" value="<%= article.songs[i].url %>" required>
+                    </div>
+                </div>
+                    <% } %>
+
+                <!-- NFL Section -->
+                <h2>NFL</h2>
+                <% for(let i = 0; i < article.nflTeams.length; i++) { %>
+                <div class="mb-3">
+                    <div class="mb-3">
+                        <label class="form-label" for="nflTeam<%= i %>">#<%= i + 1 %> Team Name</label>
+                        <input class="form-control" type="text" name="article[nflTeams][<%= i %>][title]" id="nflTeam<%= i %>" value="<%= article.nflTeams[i].title %>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="nflTeamLogo<%= i %>">#<%= i + 1 %> Team Logo</label>
+                        <input class="form-control" type="text" name="article[nflTeams][<%= i %>][url]" id="nflTeamLogo<%= i %>" value="<%= article.nflTeams[i].url %>" required>
+                    </div>
+                </div>
+                    <% } %>
+
+                <!-- MLB Section -->
+                <h2>MLB</h2>
+                <% for(let i = 0; i < article.mlbTeams.length; i++) { %>
+                <div class="mb-3">
+                    <div class="mb-3">
+                        <label class="form-label" for="mlbTeam<%= i %>">#<%= i + 1 %> Team Name</label>
+                        <input class="form-control" type="text" name="article[mlbTeams][<%= i %>][title]" id="mlbTeam<%= i %>" value="<%= article.mlbTeams[i].title %>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="mlbTeamLogo<%= i %>">#<%= i + 1 %> Team Logo</label>
+                        <input class="form-control" type="text" name="article[mlbTeams][<%= i %>][url]" id="mlbTeamLogo<%= i %>" value="<%= article.mlbTeams[i].url %>" required>
+                    </div>
+                </div>
+                    <% } %>
+
+                <!-- NHL Section -->
+                <h2>NHL</h2>
+                <% for(let i = 0; i < article.nhlTeams.length; i++) { %>
+                <div class="mb-3">
+                    <div class="mb-3">
+                        <label class="form-label" for="nhlTeam<%= i %>">#<%= i + 1 %> Team Name</label>
+                        <input class="form-control" type="text" name="article[nhlTeams][<%= i %>][title]" id="nhlTeam<%= i %>" value="<%= article.nhlTeams[i].title %>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="nhlTeamLogo<%= i %>">#<%= i + 1 %> Team Logo</label>
+                        <input class="form-control" type="text" name="article[nhlTeams][<%= i %>][url]" id="nhlTeamLogo<%= i %>" value="<%= article.nhlTeams[i].url %>" required>
+                    </div>
+                </div>
+                    <% } %>
+
+                <!-- NBA Section -->
+                <h2>NBA</h2>
+                <% for(let i = 0; i < article.nbaTeams.length; i++) { %>
+                <div class="mb-3">
+                    <div class="mb-3">
+                        <label class="form-label" for="nbaTeam<%= i %>">#<%= i + 1 %> Team Name</label>
+                        <input class="form-control" type="text" name="article[nbaTeams][<%= i %>][title]" id="nbaTeam<%= i %>" value="<%= article.nbaTeams[i].title %>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="nbaTeamLogo<%= i %>">#<%= i + 1 %> Team Logo</label>
+                        <input class="form-control" type="text" name="article[nbaTeams][<%= i %>][url]" id="nbaTeamLogo<%= i %>" value="<%= article.nbaTeams[i].url %>" required>
+                    </div>
+                </div>
+                    <% } %>
+                    <div class="mb-3">
+                        <% article.images.forEach(function(img, i){ %>
+                            <img src="<%= img.thumbnail %>" class="img-thumbnail" alt="">
+                            <div class="form-check-inline">
+                                <input type="checkbox" id="image-<%=i%>" name="deleteImages[]" value="<%= img.filename %>">
+                            </div>
+                            <label for="image-<%=i%>">Delete?</label>
+                       <% }); %>
+                    </div>
+                <div class="mb-3">
+                    <button class="btn btn-success">Edit Article</button>
+                </div>
+            </div>
+        </form>
+        <a class="btn btn-danger" href="/articles/<%=article._id%>">Cancel</a>
+    </div>
+</div>

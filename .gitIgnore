@@ -1,0 +1,34 @@
+# Node dependencies
+/node_modules
+
+# Environment variables (secret keys, DB URIs, etc.)
+.env
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Editor settings (optional)
+.vscode/
+.idea/
+*.sw?
+
+# Optional: compiled build artifacts (if applicable)
+dist/
+build/
+
+# Optional: coverage reports from testing
+coverage/

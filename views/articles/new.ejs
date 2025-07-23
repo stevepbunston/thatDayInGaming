@@ -1,0 +1,152 @@
+<% layout('layouts/boilerplate') %>
+<div class="row">
+    <h1 class="text-center">New Article</h1>
+    <div class="col-6 offset-3">
+        <form id="myForm" action="/articles" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+            <div>
+                <div class="mb-3">
+                    <label class="form-label" for="title">Title</label>
+                    <input class="form-control" type="text" name="article[title]" id="title" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="game">Game</label>
+                    <input class="form-control" type="text" name="article[game]" id="game" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="console">Console</label>
+                    <input class="form-control" type="text" name="article[console]" id="console" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="release">Release</label>
+                    <input class="form-control" type="text" name="article[release]" id="release" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="image">Image File</label>
+                    <input class="form-control" type="file" name="image" id="image" required multiple>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="blog">Blog</label>
+                    <textarea class="form-control" type="text" name="article[blog]" id="mytextarea"></textarea>
+                </div>
+
+                <!-- Movies Section -->
+                <h2>Movies</h2>
+                <% for(let i = 0; i < 5; i++) { %>
+                <div class="mb-3">
+                    <div class="mb-3">
+                        <label class="form-label" for="movieTitle<%= i %>">#<%= i + 1 %> Movie Title</label>
+                        <input class="form-control" type="text" name="article[movies][<%= i %>][title]" id="movieTitle<%= i %>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="movieImage<%= i %>">#<%= i + 1 %> Movie Image</label>
+                        <input class="form-control" type="text" name="article[movies][<%= i %>][url]" id="movieImage<%= i %>" required>
+                    </div>
+                </div>
+                <% } %>
+
+                <!-- Music Section -->
+                <h2>Music</h2>
+                <% for(let i = 0; i < 5; i++) { %>
+                <div class="mb-3">
+                    <div class="mb-3">
+                        <label class="form-label" for="songTitle<%= i %>">#<%= i + 1 %> Song Title</label>
+                        <input class="form-control" type="text" name="article[songs][<%= i %>][title]" id="songTitle<%= i %>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="songImage<%= i %>">#<%= i + 1 %> Song Image</label>
+                        <input class="form-control" type="text" name="article[songs][<%= i %>][url]" id="songImage<%= i %>" required>
+                    </div>
+                </div>
+                <% } %>
+
+                <!-- NFL Section -->
+                <h2>NFL</h2>
+                <% for(let i = 0; i < 5; i++) { %>
+                <div class="mb-3">
+                    <div class="mb-3">
+                        <label class="form-label" for="nflTeam<%= i %>">#<%= i + 1 %> Team Name</label>
+                        <input class="form-control" type="text" name="article[nflTeams][<%= i %>][title]" id="nflTeam<%= i %>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="nflTeamLogo<%= i %>">#<%= i + 1 %> Team Logo</label>
+                        <input class="form-control" type="text" name="article[nflTeams][<%= i %>][url]" id="nflTeamLogo<%= i %>" required>
+                    </div>
+                </div>
+                <% } %>
+
+                <!-- MLB Section -->
+                <h2>MLB</h2>
+                <% for(let i = 0; i < 5; i++) { %>
+                <div class="mb-3">
+                    <div class="mb-3">
+                        <label class="form-label" for="mlbTeam<%= i %>">#<%= i + 1 %> Team Name</label>
+                        <input class="form-control" type="text" name="article[mlbTeams][<%= i %>][title]" id="mlbTeam<%= i %>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="mlbTeamLogo<%= i %>">#<%= i + 1 %> Team Logo</label>
+                        <input class="form-control" type="text" name="article[mlbTeams][<%= i %>][url]" id="mlbTeamLogo<%= i %>" required>
+                    </div>
+                </div>
+                <% } %>
+
+                <!-- NHL Section -->
+                <h2>NHL</h2>
+                <% for(let i = 0; i < 5; i++) { %>
+                <div class="mb-3">
+                    <div class="mb-3">
+                        <label class="form-label" for="nhlTeam<%= i %>">#<%= i + 1 %> Team Name</label>
+                        <input class="form-control" type="text" name="article[nhlTeams][<%= i %>][title]" id="nhlTeam<%= i %>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="nhlTeamLogo<%= i %>">#<%= i + 1 %> Team Logo</label>
+                        <input class="form-control" type="text" name="article[nhlTeams][<%= i %>][url]" id="nhlTeamLogo<%= i %>" required>
+                    </div>
+                </div>
+                <% } %>
+
+                <!-- NBA Section -->
+                <h2>NBA</h2>
+                <% for(let i = 0; i < 5; i++) { %>
+                <div class="mb-3">
+                    <div class="mb-3">
+                        <label class="form-label" for="nbaTeam<%= i %>">#<%= i + 1 %> Team Name</label>
+                        <input class="form-control" type="text" name="article[nbaTeams][<%= i %>][title]" id="nbaTeam<%= i %>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="nbaTeamLogo<%= i %>">#<%= i + 1 %> Team Logo</label>
+                        <input class="form-control" type="text" name="article[nbaTeams][<%= i %>][url]" id="nbaTeamLogo<%= i %>" required>
+                    </div>
+                </div>
+                <% } %>
+
+                <div class="mb-3">
+                    <button class="btn btn-success">Add Article</button>
+                </div>
+            </div>
+        </form>
+        <a class="btn btn-warning" href="/articles">Back to Articles</a>
+    </div>
+</div>
+
+
+<script>
+    //Example starter JavaScript for disabling form submissions if there are invalid fields
+(() => {
+    'use strict'
+    
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const forms = document.querySelectorAll('.validated-form')
+    
+    // Loop over them and prevent submission
+    Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+        }
+    
+        form.classList.add('was-validated')
+        }, false)
+    })
+    })()
+</script>

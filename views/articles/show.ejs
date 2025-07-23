@@ -1,0 +1,189 @@
+<% layout('layouts/boilerplate') %>
+<div class="row">
+    <div class="col-3">
+        <div class="card mb-3">
+            <div class="card-header">
+                Box Office Top 5
+            </div>
+            <ul class="list-group list-group-flush">
+                <% for(let i = 0; i < article.movies.length; i++) { %>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span class="text-truncate small-text"><%= i + 1 %>. <%= article.movies[i].title %></span>
+                    <img class="small-img ml-auto" src="<%= article.movies[i].url %>" alt="">
+                </li>
+                <% } %>
+            </ul>
+        </div>
+        <div class="card mb-3">
+            <div class="card-header">
+                NFL Top 5
+            </div>
+            <ul class="list-group list-group-flush">
+                <% for(let i = 0; i < article.nflTeams.length; i++) { %>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span class="text-truncate small-text"><%= i + 1 %>. <%= article.nflTeams[i].title %></span>
+                    <img class="small-img ml-auto" src="<%= article.nflTeams[i].url %>" alt="">
+                </li>
+                <% } %>
+            </ul>
+        </div>
+        <div class="card mb-3">
+            <div class="card-header">
+                NHL Top 5
+            </div>
+            <ul class="list-group list-group-flush">
+                <% for(let i = 0; i < article.nhlTeams.length; i++) { %>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span class="text-truncate small-text"><%= i + 1 %>. <%= article.nhlTeams[i].title %></span>
+                    <img class="small-img ml-auto" src="<%= article.nhlTeams[i].url %>" alt="">
+                </li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="col-6">
+        <div id="articleCarousel" class="carousel slide">
+            <div class="carousel-inner">
+            <% article.images.forEach((img, i) =>{ %>
+              <div class="carousel-item <%= i === 0 ? 'active' : ''  %>">
+                <img src="<%= img.url %>" class="d-block w-100" alt="">
+              </div>
+                <% }); %>
+            </div>
+            <% if(article.images.length > 1) { %>
+            <button class="carousel-control-prev" type="button" data-bs-target="#articleCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#articleCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+            <% } %>
+        </div>
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title text-center"><%= article.title %></h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item text-center"><%= article.game %></li>
+                <li class="list-group-item text-center"><%= article.release %></li>
+                <li class="list-group-item text-center"><%= article.console %></li>
+            </ul>
+            <div class="card-body">
+                <p class="card-text"><%- article.blog %></p>
+                <% if(currentUser && currentUser.role === 'admin'){ %>
+                <a class="card-link btn btn-info" href="/articles/<%= article._id %>/edit">Edit Article</a>
+                <form class="d-inline" action="/articles/<%=article._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+                <% } %>
+            </div>
+        </div>            
+    </div>
+    <div class="col-3">
+        <div class="card mb-3">
+            <div class="card-header">
+                Billboard Top 5
+            </div>
+            <ul class="list-group list-group-flush">
+                <% for(let i = 0; i < article.songs.length; i++) { %>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span class="text-truncate small-text"><%= i + 1 %>. <%= article.songs[i].title %></span>
+                    <img class="small-img ml-auto" src="<%= article.songs[i].url %>" alt="">
+                </li>
+                <% } %>
+            </ul>
+        </div>
+        <div class="card mb-3">
+            <div class="card-header">
+                MLB Top 5
+            </div>
+            <ul class="list-group list-group-flush">
+                <% for(let i = 0; i < article.mlbTeams.length; i++) { %>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span class="text-truncate small-text"><%= i + 1 %>. <%= article.mlbTeams[i].title %></span>
+                    <img class="small-img ml-auto" src="<%= article.mlbTeams[i].url %>" alt="">
+                </li>
+                <% } %>
+            </ul>
+        </div>
+        <div class="card mb-3">
+            <div class="card-header">
+                NBA Top 5
+            </div>
+            <ul class="list-group list-group-flush">
+                <% for(let i = 0; i < article.nbaTeams.length; i++) { %>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span class="text-truncate small-text"><%= i + 1 %>. <%= article.nbaTeams[i].title %></span>
+                    <img class="small-img ml-auto" src="<%= article.nbaTeams[i].url %>" alt="">
+                </li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+</div>
+<div>
+    <h2>Leave A Review!</h2>
+    <h4>Rate This Game Out Of 10 And Leave Your Own Review</h4>
+    <% if(!currentUser) {%>
+    <h5>Log in to leave a review</h5>
+    <% } %>
+    <% if(currentUser && currentUser.isVerified) {%>
+    <form class="mb-3 validated-form" action="/articles/<%= article._id %>/reviews" method="POST" novalidate>
+        <!-- <div class="mb-3">
+            <label class="form-label" for="rating">Rating</label>
+            <input class="form-range" type="range" min="1" max="10" name="review[rating]" id="rating">
+        </div> -->
+        <fieldset class="starability-basic">
+            <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+            <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+            <label for="first-rate1" title="1">1 star</label>
+            <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+            <label for="first-rate2" title="2">2 stars</label>
+            <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+            <label for="first-rate3" title="3">3 stars</label>
+            <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+            <label for="first-rate4" title="4">4 stars</label>
+            <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+            <label for="first-rate5" title="5">5 stars</label>
+            <input type="radio" id="first-rate6" name="review[rating]" value="6" />
+            <label for="first-rate6" title="6">6 stars</label>
+            <input type="radio" id="first-rate7" name="review[rating]" value="7" />
+            <label for="first-rate7" title="7">7 stars</label>
+            <input type="radio" id="first-rate8" name="review[rating]" value="8" />
+            <label for="first-rate8" title="8">8 stars</label>
+            <input type="radio" id="first-rate9" name="review[rating]" value="9" />
+            <label for="first-rate9" title="9">9 stars</label>
+            <input type="radio" id="first-rate10" name="review[rating]" value="10" />
+            <label for="first-rate10" title="10">10 stars</label>
+      </fieldset>     
+        <div class="mb-3">
+            <label class="form-label" for="body">Review</label>
+            <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" required></textarea>
+            <div class="valid-feedback">
+              That's Better!
+            </div>
+        </div>
+        <button class="btn btn-success">Submit</button>
+    </form>
+    <% } %>
+    <% for (let review of article.reviews) { %>
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="mb-3">
+              <h5 class="card-title"> <img class="small-img" src="<%= review.author.avatar%>" alt=""> <%= review.author.username%></h5>
+              <p class="starability-result" data-rating="<%=review.rating%>">
+              </p>
+              <p class="card-text"><%= review.body %></p>
+              <% if (currentUser && (currentUser.role === 'admin' || review.author.equals(currentUser._id))) { %>
+              <form action="/articles/<%= article._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
+                <button class="btn btn-danger btn-sm ">Delete</button>
+              </form>
+              <% } %>
+            </div>
+          </div>
+        </div>
+        <% } %>
+</div>

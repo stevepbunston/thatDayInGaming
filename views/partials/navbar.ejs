@@ -1,0 +1,27 @@
+<nav class="navbar navbar-dark sticky-top navbar-expand-lg bg-dark">
+    <div class="container-fluid">
+      <!-- <h1 class="navbar-brand text-light">TDIG</h1> -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link text-light" href="/">Home</a>
+          <a class="nav-link text-light" href="/articles">Articles</a>
+          <a class="nav-link text-light" href="/about">About</a>
+          <% if(currentUser && currentUser.role === 'admin'){ %>
+          <a class="nav-link text-light" href="/users">Registered Users</a>
+          <% } %>
+        </div>
+        <div class="navbar-nav ms-auto">
+          <%if(!currentUser || !currentUser.isVerified) { %>
+          <a class="nav-link text-light" href="/login">Login</a>
+          <a class="nav-link text-light" href="/register">Register</a>
+          <%} else{ %>
+          <a class="nav-link text-light" href="/users/<%= currentUser._id %>">Profile</a>
+          <a class="nav-link text-light" href="/logout">Logout</a>
+          <% } %>
+        </div>
+      </div>
+    </div>
+</nav>

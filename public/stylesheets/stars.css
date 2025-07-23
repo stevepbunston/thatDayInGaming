@@ -1,0 +1,83 @@
+.starability-result {
+  position: relative;
+  width: 300px; /* Adjust based on the number of stars */
+  height: 30px;
+  background: url('/images/starUnfilled.png') repeat-x;
+}
+
+.starability-result::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: url('/images/starFilled.png') repeat-x;
+  width: 0; /* Default width, will be overridden by data-rating */
+}
+
+.starability-result[data-rating="10"]::after { width: 100%; }
+.starability-result[data-rating="9"]::after { width: 90%; }
+.starability-result[data-rating="8"]::after { width: 80%; }
+.starability-result[data-rating="7"]::after { width: 70%; }
+.starability-result[data-rating="6"]::after { width: 60%; }
+.starability-result[data-rating="5"]::after { width: 50%; }
+.starability-result[data-rating="4"]::after { width: 40%; }
+.starability-result[data-rating="3"]::after { width: 30%; }
+.starability-result[data-rating="2"]::after { width: 20%; }
+.starability-result[data-rating="1"]::after { width: 10%; }
+
+/* Hover and selected styles for basic star rating */
+
+.starability-basic {
+  display: block;
+  position: relative;
+  width: 300px; /* Adjust based on your design */
+  min-height: 60px; /* Adjust based on your design */
+  padding: 0;
+  border: none;
+}
+
+.starability-basic > input {
+  position: absolute;
+  margin-right: -100%;
+  opacity: 0;
+}
+
+.starability-basic > label {
+  position: relative;
+  display: inline-block;
+  float: left;
+  width: 30px; /* Adjust based on your design */
+  height: 30px; /* Adjust based on your design */
+  font-size: 0;
+  cursor: pointer;
+  background-image: url('/images/starUnfilled.png'); /* Path to unfilled star */
+  background-repeat: no-repeat;
+}
+
+.starability-basic > input:checked + label,
+.starability-basic > input:hover + label,
+.starability-basic > label:hover,
+.starability-basic > input:checked ~ label:hover,
+.starability-basic > label:hover ~ input:checked + label {
+  background-image: url('/images/starFilled.png'); /* Path to filled star */
+}
+
+.starability-basic > input:focus + label {
+  outline: 1px dotted #999;
+}
+
+/* Additional styles for high-resolution displays */
+
+@media screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 192dpi) {
+  .starability-result {
+    background-size: 30px auto;
+  }
+  .starability-result:after {
+    background-size: 30px auto;
+  }
+  
+  .starability-basic > label {
+    background-size: 30px auto;
+  }
+}
