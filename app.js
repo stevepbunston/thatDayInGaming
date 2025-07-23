@@ -21,7 +21,7 @@ const userRoutes = require('./routes/users');
 const articleRoutes = require('./routes/articles');
 const reviewRoutes = require('./routes/reviews');
 const MongoStore = require('connect-mongo')(session);
-const dbUrl = 'mongodb://localhost:27017/gameblog'
+const dbUrl = process.env.DB_URL
 //'mongodb://localhost:27017/gameblog'
 //process.env.DB_URL
 
