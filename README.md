@@ -5,6 +5,7 @@ A full-stack retro game blog where each post explores a classic game's release d
 ## 🚀 Live Demo
 
 🔗 [Visit That Day In Gaming](https://thatdayingaming.onrender.com)
+📹 [Watch the Demo Video](https://youtu.be/YqPq7oAdBag?si=usoyxZ2sOwrVsl7k)
 
 ---
 
@@ -60,4 +61,12 @@ HOST=thatdayingaming.onrender.com
 
 # TinyMCE (WYSIWYG Editor)
 TINY_MCE_API=<your-tinymce-api-key>
+
+---
+
+## 🔧 Next Steps
+
+- Improve mobile responsiveness for smaller screens  
+(Currently optimized for desktop browsers)
+
 
