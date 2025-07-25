@@ -69,4 +69,14 @@ TINY_MCE_API=<your-tinymce-api-key>
 - Improve mobile responsiveness for smaller screens  
 (Currently optimized for desktop browsers)
 
+---
+
+## 🙏 Acknowledgements
+
+- 💡 Inspired by [Colt Steele’s YelpCamp](https://github.com/Colt/YelpCamp) for structure and image upload examples
+- ☁️ [Cloudinary](https://cloudinary.com/) – for image hosting and media management
+- 📬 [Mailgun](https://www.mailgun.com/) – for email verification and email delivery
+- 📝 [TinyMCE](https://www.tiny.cloud/) – for rich text blog editing
+- 🧠 [OpenAI ChatGPT](https://openai.com/chatgpt) – for development guidance and troubleshooting help
+
 
